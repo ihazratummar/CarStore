@@ -4,9 +4,11 @@ A project app created to learn and demonstrate various Android development techn
 
 ## Screenshots
 
-![Screenshot 1](screenshot/HomePage.png)
-![Screenshot 2](screenshot/LoginPage.png)
-![Screenshot 3](screenshot/SignUpPage.png)
+<div style="display: flex; flex-direction: row;">
+    <img src="screenshot/HomePage.png" alt="Screenshot 1" width="300"/>
+    <img src="screenshot/LoginPage.png" alt="Screenshot 2" width="300"/>
+    <img src="screenshot/SignUpPage.png" alt="Screenshot 3" width="300"/>
+</div>
 
 ## Features
 
