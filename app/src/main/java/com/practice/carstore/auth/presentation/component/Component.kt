@@ -32,7 +32,7 @@ fun CustomTextField(
     ) {
     TextField(
         modifier = modifier.fillMaxWidth().shadow(
-            elevation = 4.dp,
+            elevation = 2.dp,
             spotColor = Color(0xFF000000),
             ambientColor = Color(0xFF000000),
             shape = RoundedCornerShape(14.dp)

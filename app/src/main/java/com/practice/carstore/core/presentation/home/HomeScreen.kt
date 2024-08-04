@@ -14,8 +14,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -63,6 +67,7 @@ import com.practice.carstore.core.navigation.CarDetailsScreen
 import com.practice.carstore.core.navigation.HomeScreen
 import com.practice.carstore.core.navigation.ProfileScreen
 import com.practice.carstore.core.presentation.component.FeatureCarsCard
+import com.practice.carstore.core.presentation.component.RecommendedCarsCard
 import com.practice.carstore.navigation.AuthNav
 import com.practice.carstore.navigation.ContentNav
 
@@ -99,15 +104,16 @@ fun HomeScreen(
                             contentDescription = "Notification"
                         )
                     }
-                })
+                }
+            )
         }
     ) { paddingValues ->
         LazyColumn(
             modifier = modifier
-                .padding(paddingValues)
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top
+            verticalArrangement = Arrangement.Top,
+            contentPadding = paddingValues
         ) {
             item {
                 Row(
@@ -182,16 +188,38 @@ fun HomeScreen(
                 Spacer(modifier = Modifier.height(30.dp))
             }
             item {
-                Row (
+                Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(horizontal = 16.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
-                ){
+                ) {
                     Text(text = "Recommended", style = MaterialTheme.typography.headlineSmall)
                     TextButton(onClick = { /*TODO*/ }) {
                         Text(text = "See all")
+                    }
+                }
+            }
+            items(featuredCars.chunked(2)) {
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    it.forEach { car ->
+                        val painter: Painter = rememberAsyncImagePainter(car.image[0])
+                        RecommendedCarsCard(
+                            modifier = Modifier
+                                .weight(1f)
+                                .padding(5.dp),
+                            image = painter,
+                            name = car.carShortDetails,
+                            price = car.price.toString()
+                        )
+                    }
+                    // If there's only one car in the pair, add an empty space
+                    if (it.size < 2) {
+                        Spacer(modifier = Modifier.weight(1f).padding(5.dp))
                     }
                 }
             }

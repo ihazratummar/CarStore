@@ -97,7 +97,6 @@ fun AppNavigation(
             navController
         )
     }
-
 }
 
 @Composable
@@ -112,7 +111,7 @@ private fun BottomBar(
         modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 35.dp)
-            .shadow(8.dp, shape = RoundedCornerShape(26.dp)),
+            .shadow(4.dp, shape = RoundedCornerShape(26.dp)),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         shape = RoundedCornerShape(26.dp)
     ) {

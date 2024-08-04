@@ -30,7 +30,7 @@ fun NavGraph(
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = if (authState is AuthState.UnAuthenticated) AuthNav else ContentNav
+        startDestination = if (authState is AuthState.UnAuthenticated) ContentNav else ContentNav
     ) {
         authGraph(
             navController = navController,
